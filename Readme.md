@@ -1,13 +1,5 @@
-# Projet LAOA
+# Projman GUI
 
-## Utilise Qt
+## Gestionnaire de projets (Code)
 
-## Idées
-
-- Truc F1 mais on sait pas encore
-- Projman interface + gestion de projet
-
-
-## A Utiliser:
-- barre d'état
-- rechercher des choes
+Basé sur [Projman](https://github.com/Paul-Passeron/projman)
