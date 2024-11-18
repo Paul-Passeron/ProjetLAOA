@@ -12,4 +12,11 @@ public:
   virtual void clean() = 0;
 };
 
+class MakefileBS : public BuildSystem {
+public:
+  void configure() override;
+  void build() override;
+  void clean() override;
+};
+
 #endif // BUILD_SYSTEM_H

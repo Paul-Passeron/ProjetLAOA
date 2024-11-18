@@ -10,12 +10,22 @@ class Project {
   std::string projectName;
   std::filesystem::path projectPath;
   std::unique_ptr<BuildSystem> buildSystem;
+  std::string buildPath = "build";
 
 public:
+  Project(std::string projectName, std::filesystem::path projectPath);
   virtual void addModule(std::string moduleName);
-  virtual void build();
-  virtual void run(const std::vector<std::string> &args);
-  virtual void install();
+  void setBuildSystem(std::unique_ptr<BuildSystem> bs);
+  void build();
+  void run(const std::vector<std::string> &args);
+  void install();
+};
+
+class CProject : public Project {
+  std::vector<std::string> modules;
+
+public:
+  CProject(std::string name, std::filesystem::path path);
 };
 
 #endif // PROJECT_H
