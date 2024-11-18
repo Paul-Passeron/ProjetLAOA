@@ -13,16 +13,19 @@ SOURCES += \
     Project.cpp \
     RunConfiguration.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    newprojectdialog.cpp
 
 HEADERS += \
     BuildSystem.h \
     Project.h \
     RunConfiguration.h \
-    mainwindow.h
+    mainwindow.h \
+    newprojectdialog.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    newprojectdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
