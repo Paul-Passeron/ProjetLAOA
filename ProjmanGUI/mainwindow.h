@@ -17,6 +17,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_actionNew_Project_triggered();
+
+    void on_actionOpen_Project_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
