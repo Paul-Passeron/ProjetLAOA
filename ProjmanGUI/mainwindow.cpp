@@ -6,6 +6,7 @@
 
 #include <QFileSystemModel>
 #include <iostream>
+#include <mainprojectview.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -44,6 +45,9 @@ void MainWindow::on_actionNew_Project_triggered() {
     model->setRootPath(QDir::currentPath());
     ui->treeView->setModel(model);
     ui->treeView->setRootIndex(model->index(QString::fromStdString(std::string(p / new_proj->getProjectName()))));
+    ui->projView->setLayout(new QGridLayout(ui->projView));
+    MainProjectView *v = new MainProjectView(ui->projView);
+    ui->projView->layout()->addWidget(v);
   }
 }
 

@@ -1,0 +1,88 @@
+@startuml
+
+class Project {
+    - projectName: String
+    - projectPath: String
+    - buildSystem: BuildSystem
+    - configs: List<RunConfiguration>
+    + {abstract} create()
+    + {abstract} addModule(moduleName: String)
+    + build()
+    + run(args: List<String>)
+    + install()
+}
+
+class CProject {
+    + create()
+    + addModule(moduleName: String)
+}
+
+class CppProject {
+    + create()
+    + addModule(moduleName: String)
+}
+
+class JavaProject {
+    + create()
+    + addModule(moduleName: String)
+}
+
+class PythonProject {
+    + create()
+    + addModule(moduleName: String)
+}
+
+class RunConfiguration {
+    - name: String
+    - project: Project
+    - args: List<String>
+    + create(name: String, project: Project)
+    + modify(args: List<String>)
+    + delete()
+    + execute()
+}
+
+class BuildSystem {
+    - name: String
+    + configure()
+    + build()
+    + clean()
+}
+
+class CMake {
+    + configure()
+    + build()
+    + clean()
+}
+
+class Makefile {
+    + configure()
+    + build()
+    + clean()
+}
+
+class Ninja {
+    + configure()
+    + build()
+    + clean()
+}
+
+class Controller {
+  + addConfig(project: Project *, config: RunConfiguration)
+}
+
+
+Project *-- "1..1" BuildSystem
+Project -- Controller: modify configs
+RunConfiguration "0..*" --* Project
+
+BuildSystem <|-- CMake
+BuildSystem <|-- Makefile
+BuildSystem <|-- Ninja
+
+
+Project <|-- CProject
+Project <|-- CppProject
+Project <|-- JavaProject
+Project <|-- PythonProject
+@enduml
