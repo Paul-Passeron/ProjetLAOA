@@ -17,8 +17,13 @@ public:
 private slots:
   void on_comboBox_activated(int index);
 
-private:
+  void on_pushButton_clicked();
+
+  void on_lineEdit_2_textChanged(const QString &arg1);
+
+  private:
   Ui::NewProjectDialog *ui;
+  QString directory;
 
 public:
   QString getProjectName();
@@ -26,6 +31,8 @@ public:
   QString getLang();
 
   QString getBuildSystem();
+
+  QString getDir();
 
   bool getGit();
 };

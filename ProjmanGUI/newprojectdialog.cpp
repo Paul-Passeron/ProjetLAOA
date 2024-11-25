@@ -1,6 +1,9 @@
 #include "newprojectdialog.h"
 #include "ui_newprojectdialog.h"
 
+#include <QFileDialog>
+#include <iostream>
+
 QList<QString> getBuildSystemForLanguage(std::string lang) {
   if (lang == "C++") {
     return {"CMake", "Ninja", "Makefile"};
@@ -21,6 +24,7 @@ NewProjectDialog::NewProjectDialog(QWidget *parent)
   ui->comboBox->addItem("C++");
   ui->comboBox->addItem("Python");
   ui->comboBox->addItem("Java");
+ // ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 
   std::string txt = ui->comboBox->itemText(0).toStdString();
   ui->comboBox_2->addItems(getBuildSystemForLanguage(txt));
@@ -42,6 +46,38 @@ QString NewProjectDialog::getBuildSystem() {
 
 bool NewProjectDialog::getGit() { return ui->checkBox->isChecked(); }
 
-QString NewProjectDialog::getProjectName(){
-    return ui->lineEdit->text();
+QString NewProjectDialog::getProjectName() { return ui->lineEdit->text(); }
+
+void NewProjectDialog::on_pushButton_clicked() {
+  directory = QFileDialog::getExistingDirectory(
+      this, tr("Open Directory"), "/home",
+      QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  ui->lineEdit_2->clear();
+  ui->lineEdit_2->setText(directory);
 }
+
+void NewProjectDialog::on_lineEdit_2_textChanged(const QString &arg1) {
+  directory = arg1;
+}
+
+QString NewProjectDialog::getDir() { return directory; }
+
+/*
+void NewProjectDialog::on_lineEdit_textChanged(const QString &arg1) {
+  if (arg1.isEmpty()) {
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+  }
+  std::cout << "ARG ONE IS " << arg1.toStdString();
+  ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+}
+*/
+/*
+void NewProjectDialog::on_lineEdit_textEdited(const QString &arg1)
+{
+    if (arg1.isEmpty()) {
+        ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+    }
+    std::cout << "ARG ONE IS " << arg1.toStdString();
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+}*/
+

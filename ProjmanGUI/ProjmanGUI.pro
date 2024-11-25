@@ -10,20 +10,25 @@ CONFIG += c++17
 
 SOURCES += \
     BuildSystem.cpp \
+    Globals.cpp \
     Project.cpp \
     RunConfiguration.cpp \
     main.cpp \
+    mainprojectview.cpp \
     mainwindow.cpp \
     newprojectdialog.cpp
 
 HEADERS += \
     BuildSystem.h \
+    Globals.h \
     Project.h \
     RunConfiguration.h \
+    mainprojectview.h \
     mainwindow.h \
     newprojectdialog.h
 
 FORMS += \
+    mainprojectview.ui \
     mainwindow.ui \
     newprojectdialog.ui
 

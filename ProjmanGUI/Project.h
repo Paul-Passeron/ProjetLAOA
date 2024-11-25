@@ -33,6 +33,8 @@ public:
   void setSourcePath(std::string s);
   void setProjectPath(std::filesystem::path p);
   ~Project() = default;
+  static Project *projectFromSpecs(std::string name, std::filesystem::path path,
+                                   std::string lang, std::string bs);
 };
 
 class CProject : public Project {
